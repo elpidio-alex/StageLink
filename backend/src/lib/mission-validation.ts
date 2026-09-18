@@ -1,4 +1,5 @@
 export { applicationInputSchema, missionInputSchema } from "@stagelink/shared";
+// Ceci est un commentaire sur une ligne
 
 export function calculateMatchScore(
   requiredSkills: string[],
