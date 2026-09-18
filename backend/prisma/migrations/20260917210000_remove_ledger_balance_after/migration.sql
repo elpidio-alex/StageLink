@@ -1,0 +1,1 @@
+ALTER TABLE "LedgerEntry" DROP COLUMN "balanceAfter";

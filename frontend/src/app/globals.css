@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  --background: 210 25% 98%;
+  --foreground: 220 24% 16%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 24% 16%;
+  --primary: 152 65% 38%;
+  --primary-foreground: 0 0% 100%;
+  --muted: 210 18% 94%;
+  --muted-foreground: 215 12% 44%;
+  --border: 214 18% 86%;
+}
+
+.dark {
+  --background: 222 22% 11%;
+  --foreground: 210 20% 96%;
+  --card: 222 20% 15%;
+  --card-foreground: 210 20% 96%;
+  --primary: 152 60% 50%;
+  --primary-foreground: 160 30% 8%;
+  --muted: 220 17% 20%;
+  --muted-foreground: 215 14% 68%;
+  --border: 218 16% 27%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+.glass {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--border) / 0.5);
+}
+
+.dashboard-shell {
+  color: hsl(var(--foreground));
+}
+
+.dashboard-shell .border-zinc-200 {
+  border-color: hsl(var(--border));
+  border-radius: 0.75rem;
+  background: hsl(var(--card));
+}
+
+.dashboard-shell .text-zinc-950 {
+  color: hsl(var(--foreground));
+}
+
+.dashboard-shell .text-zinc-800,
+.dashboard-shell .text-zinc-700 {
+  color: hsl(var(--card-foreground));
+}
+
+.dashboard-shell .text-zinc-600,
+.dashboard-shell .text-zinc-500 {
+  color: hsl(var(--muted-foreground));
+}
+
+.dashboard-shell .text-teal-700 {
+  color: hsl(var(--primary));
+}
+
+.dashboard-shell .hover\:border-teal-700:hover {
+  border-color: hsl(var(--primary));
+}
+
+.dashboard-shell .bg-zinc-100 {
+  background: hsl(var(--muted));
+}
+
+.dashboard-shell .bg-zinc-100.text-zinc-600,
+.dashboard-shell .bg-zinc-100.text-zinc-700 {
+  color: hsl(var(--muted-foreground));
+}
+
+.dashboard-shell > div > div[class*="border-zinc-200"] {
+  box-shadow: 0 8px 24px hsl(var(--foreground) / 0.04);
+}
+
+.dark .dashboard-shell .bg-amber-100 {
+  background: hsl(38 92% 35% / 0.22);
+  color: hsl(40 96% 78%);
+}
+
+.dark .dashboard-shell .bg-blue-100 {
+  background: hsl(214 80% 45% / 0.22);
+  color: hsl(214 92% 80%);
+}
+
+.dark .dashboard-shell .bg-violet-100 {
+  background: hsl(263 70% 55% / 0.22);
+  color: hsl(263 90% 82%);
+}
+
+.dark .dashboard-shell .bg-emerald-100 {
+  background: hsl(152 60% 38% / 0.22);
+  color: hsl(152 70% 75%);
+}
+
+.dark .dashboard-shell .bg-red-100 {
+  background: hsl(0 72% 45% / 0.22);
+  color: hsl(0 90% 80%);
+}
