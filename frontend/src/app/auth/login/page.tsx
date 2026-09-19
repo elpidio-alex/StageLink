@@ -38,7 +38,16 @@ function LoginForm() {
         );
         return;
       }
-      window.location.assign(result?.url ?? callbackUrl);
+      let destination = callbackUrl;
+      if (result?.url) {
+        try {
+          const parsedUrl = new URL(result.url, window.location.origin);
+          destination = parsedUrl.pathname + parsedUrl.search;
+        } catch {
+          destination = callbackUrl;
+        }
+      }
+      window.location.assign(destination);
     } catch {
       setServerError(
         "Le serveur est momentanément indisponible. Réessaie dans un instant.",

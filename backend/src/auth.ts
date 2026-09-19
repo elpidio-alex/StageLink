@@ -27,22 +27,34 @@ const providers = [
       const email = parsed.data.email.toLowerCase();
       if (!canAttemptLogin(email)) return null;
 
-      const user = await prisma.user.findUnique({ where: { email } });
-      if (
-        !user?.passwordHash ||
-        !(await bcrypt.compare(parsed.data.password, user.passwordHash))
-      ) {
-        recordLoginFailure(email);
+      try {
+        const user = await prisma.user.findUnique({ where: { email } });
+        if (!user) {
+          console.warn(`[AUTH] Compte introuvable : ${email}`);
+          recordLoginFailure(email);
+          return null;
+        }
+        if (
+          !user?.passwordHash ||
+          !(await bcrypt.compare(parsed.data.password, user.passwordHash))
+        ) {
+          console.warn(`[AUTH] Mot de passe incorrect pour : ${email}`);
+          recordLoginFailure(email);
+          return null;
+        }
+
+        clearLoginFailures(email);
+        console.log(`[AUTH] Connexion réussie pour : ${email} (${user.role})`);
+        return {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          role: user.role,
+        };
+      } catch (error) {
+        console.error(`[AUTH] Erreur lors de la vérification des identifiants :`, error);
         return null;
       }
-
-      clearLoginFailures(email);
-      return {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        role: user.role,
-      };
     },
   }),
   ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
@@ -57,6 +69,7 @@ const providers = [
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
+  secret: process.env.AUTH_SECRET,
   adapter: PrismaAdapter(prisma),
   providers,
   session: { strategy: "jwt" },
