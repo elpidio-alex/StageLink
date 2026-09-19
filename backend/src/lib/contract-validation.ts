@@ -1,1 +1,1 @@
-export { deliverableInputSchema, disputeInputSchema } from "@stagelink/shared";
+export { deliverableInputSchema, disputeInputSchema } from "@/lib/validations";

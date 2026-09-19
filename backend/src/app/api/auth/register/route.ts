@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 import { Role } from "@prisma/client";
-import { registerSchema } from "@stagelink/shared";
+import { registerSchema } from "@/lib/validations";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {

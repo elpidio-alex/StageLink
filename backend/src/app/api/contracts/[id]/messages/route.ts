@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Role } from "@prisma/client";
-import { messageInputSchema } from "@stagelink/shared";
+import { messageInputSchema } from "@/lib/validations";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 

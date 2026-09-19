@@ -5,7 +5,7 @@ import {
   MissionStatus,
   Role,
 } from "@prisma/client";
-import { decisionInputSchema } from "@stagelink/shared";
+import { decisionInputSchema } from "@/lib/validations";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { applyMovementsInTransaction, disputePlan } from "@/lib/ledger";

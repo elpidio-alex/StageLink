@@ -1,4 +1,4 @@
-export { applicationInputSchema, missionInputSchema } from "@stagelink/shared";
+export { applicationInputSchema, missionInputSchema } from "@/lib/validations";
 // Ceci est un commentaire sur une ligne
 
 export function calculateMatchScore(
