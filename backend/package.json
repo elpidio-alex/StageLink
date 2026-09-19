@@ -6,6 +6,7 @@
     "dev": "next dev -p 3001",
     "build": "prisma generate && next build",
     "start": "next start -p 3001",
+    "start:production": "npm run db:deploy && npm run db:bootstrap-platform && npm run start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
@@ -14,6 +15,7 @@
     "db:deploy": "npx prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
     "db:bootstrap-admin": "tsx prisma/bootstrap-admin.ts",
+    "db:bootstrap-platform": "tsx prisma/bootstrap-admin.ts",
     "db:studio": "npx prisma studio"
   },
   "dependencies": {
