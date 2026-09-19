@@ -13,6 +13,7 @@
     "db:migrate": "npx prisma migrate dev",
     "db:deploy": "npx prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
+    "db:bootstrap-admin": "tsx prisma/bootstrap-admin.ts",
     "db:studio": "npx prisma studio"
   },
   "dependencies": {
@@ -37,7 +38,6 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
-
     "tailwindcss": "^4",
     "tsx": "^4.19.4",
     "typescript": "^5",
