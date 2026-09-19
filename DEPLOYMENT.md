@@ -13,6 +13,7 @@ ADMIN_EMAIL=admin@stagelink.tg
 ADMIN_PASSWORD=<private admin password>
 MEDIATOR_EMAIL=mediateur@stagelink.tg
 MEDIATOR_PASSWORD=<private mediator password>
+DEMO_PASSWORD=<private demo accounts password>
 ```
 
 Use this Render start command:
@@ -21,7 +22,7 @@ Use this Render start command:
 cd backend && npm run start:production
 ```
 
-The command applies pending migrations, creates or updates only the administrator and mediator accounts, and starts Next.js. It does not run the destructive demo seed.
+The command applies pending migrations, creates or updates the administrator, mediator, student, and company demo accounts, and starts Next.js. It does not run the destructive demo seed.
 
 ## Vercel frontend
 
@@ -37,3 +38,8 @@ The frontend proxies `/api/*` to `BACKEND_URL`, so the browser and NextAuth must
 ## Demo seed
 
 `npm run db:seed` is for an empty development database only. It deletes existing application data before inserting demo records and must not be used on production data.
+
+The production bootstrap creates these demo accounts without deleting existing data. They all use `DEMO_PASSWORD`:
+
+- Companies: `contact@kora.tg`, `bonjour@agroplus.tg`, `hello@ateliermono.tg`
+- Students: `amina.ayele@etu.tg`, `kodjo.adje@etu.tg`, `mariam.kossi@etu.tg`, `yawo.folly@etu.tg`, `sena.bakali@etu.tg`, `elom.koffi@etu.tg`, `espoir.togbe@etu.tg`, `afia.amouzou@etu.tg`
