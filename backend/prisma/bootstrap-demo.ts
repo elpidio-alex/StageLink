@@ -20,6 +20,13 @@ const students = [
   ["afia.amouzou@etu.tg", "Afia Amouzou", "Sociologie"],
 ] as const;
 
+const categories = [
+  ["Communication digitale", "Réseaux sociaux et visibilité locale."],
+  ["Développement web", "Sites, outils et automatisation."],
+  ["Design et création", "Identité visuelle et supports."],
+  ["Études et terrain", "Enquêtes et analyse opérationnelle."],
+] as const;
+
 async function main() {
   const password = process.env.DEMO_PASSWORD;
   if (!password || password.length < 8) {
@@ -27,6 +34,14 @@ async function main() {
   }
 
   const passwordHash = await bcrypt.hash(password, 12);
+  for (const [name, description] of categories) {
+    await prisma.category.upsert({
+      where: { name },
+      update: { description },
+      create: { name, description },
+    });
+  }
+
   for (const [email, name, legalName, sector] of companies) {
     const user = await prisma.user.upsert({
       where: { email },
